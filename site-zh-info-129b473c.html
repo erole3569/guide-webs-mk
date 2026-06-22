@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专题 · 竞彩网 · 赛事资讯与策略参考</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f3f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 首页横幅 */
+        .hero {
+            background: linear-gradient(145deg, #eef2f7 0%, #fafcff 100%);
+            border-radius: 28px;
+            padding: 3.5rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(200, 215, 230, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0f1a2b;
+            margin-bottom: 0.6rem;
+            position: relative;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #3c4b5e;
+            max-width: 720px;
+            border-left: 4px solid #7f8c9d;
+            padding-left: 1.2rem;
+            margin-top: 0.6rem;
+            font-weight: 400;
+        }
+
+        /* 背景说明（浅色卡片） */
+        .bg-note {
+            background: #ffffffd9;
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2.8rem;
+            border: 1px solid #e3e8ef;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            font-size: 1.02rem;
+        }
+
+        .bg-note span.label {
+            display: inline-block;
+            background: #dce2ec;
+            border-radius: 40px;
+            padding: 0.15rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: #2b3d55;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* 三段自然介绍 —— 使用卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 2rem;
+            border: 1px solid #e6ecf3;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin-bottom: 0.9rem;
+            color: #102131;
+            border-bottom: 2px solid #eef2f8;
+            padding-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .card p {
+            color: #2d3f57;
+            margin-bottom: 0.2rem;
+        }
+
+        .card .meta {
+            color: #60758b;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            border-top: 1px dashed #dce3ed;
+            padding-top: 0.7rem;
+        }
+
+        /* 页尾访问提示 */
+        .footer-prompt {
+            margin-top: 3.5rem;
+            background: #e8edf5;
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            border: 1px solid #d7dfea;
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .footer-prompt p {
+            font-size: 1.08rem;
+            color: #1d3043;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .footer-prompt a {
+            color: #1d3d5c;
+            background: #ffffff;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid #b8c7db;
+            transition: all 0.15s;
+            margin: 0 0.2rem;
+            white-space: nowrap;
+        }
+
+        .footer-prompt a:hover {
+            background: #dce6f2;
+            border-color: #8da1ba;
+        }
+
+        /* 小引用 / FAQ 摘要风格 */
+        .insight {
+            background: #f7faff;
+            border-radius: 18px;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 6px solid #a8b8ce;
+            font-size: 0.98rem;
+            color: #1f3144;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .insight strong {
+            color: #0f263d;
+        }
+
+        .insight a {
+            color: #1f4973;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b8c9df;
+        }
+
+        .insight a:hover {
+            text-decoration-color: #1f4973;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.8rem; }
+            .hero { padding: 2.2rem 1.2rem; }
+            .hero h1 { font-size: 2rem; }
+            .bg-note { padding: 1.5rem; }
+            .card-grid { gap: 1.2rem; }
+            .footer-prompt { padding: 1.5rem 1rem; }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce3ec;
+            margin: 1.8rem 0;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 -->
+    <div class="hero">
+        <h1>竞彩 · 赛事专题</h1>
+        <div class="sub">
+            从数据到观点，从联赛到杯赛 —— 围绕竞彩网梳理值得关注的比赛维度与信息参考。
+        </div>
+    </div>
+
+    <!-- 背景说明 -->
+    <div class="bg-note">
+        <span class="label">背景 · 信息场</span>
+        <p style="margin-bottom: 0.4rem;">
+            足球与篮球赛事资讯纷杂，<a href="https://site-zh-jingcai.com" style="color:#1f3b5c; text-decoration: underline; text-underline-offset: 2px;">竞彩网</a> 聚合了多级联赛的赛程、积分、伤停以及近期状态。无论是关注主流欧洲联赛，还是追踪亚洲、美洲赛事，平台提供的结构化数据有助于爱好者快速建立赛前印象。以下从三个常见的信息侧面展开：赛事节奏、球队动态、以及数据参考方式。
+        </p>
+    </div>
+
+    <!-- 三段自然介绍（卡片） -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>赛程节奏与密度</h3>
+            <p>赛季中后期，一周双赛成为常态。欧冠、欧联及国内杯赛穿插进行，轮换幅度与客场旅途消耗直接影响比赛走势。</p>
+            <p>通过<a href="https://site-zh-jingcai.com" style="color:#1f3b5c; text-decoration: underline; text-underline-offset: 2px;">竞彩网</a>的赛历视图，可以快速筛选近五轮赛程以及国际比赛日前后的安排，辅助判断体能储备与战术倾向。</p>
+            <div class="meta">⚽ 关键轮次 · 密集期预警</div>
+        </div>
+        <div class="card">
+            <h3>球队动态与阵容</h3>
+            <p>伤病名单、停赛累积、以及近期战术变动往往是赛前分析的核心。部分球队在转会窗后磨合度上升，而长期伤号回归也会改变攻防平衡。</p>
+            <p>留意教练发布会透露的信号，并结合平台提供的近期阵容习惯，能更清晰地理解基本面对比。</p>
+            <div class="meta">📋 阵容完整度 · 战术延续性</div>
+        </div>
+        <div class="card">
+            <h3>数据参考与趋势</h3>
+            <p>除了传统的胜平负概率，预期进球(xG)、射门转化率、防守稳定性等进阶指标也被越来越多人纳入观察。跨赛季主客场差异、相同对阵历史记录，都是值得留意的背景。</p>
+            <p>这些数据在<a href="https://site-zh-jingcai.com" style="color:#1f3b5c; text-decoration: underline; text-underline-offset: 2px;">竞彩网</a>的统计模块中按联赛分类呈现，便于横向比较。</p>
+            <div class="meta">📊 进阶统计 · 趋势交叉验证</div>
+        </div>
+    </div>
+
+    <!-- 类似FAQ摘要 / 深入提示 -->
+    <div class="insight">
+        <strong>❓ 信息整合思路：</strong> 不少爱好者会同时参考多家数据源。 
+        <a href="https://site-zh-jingcai.com">竞彩网</a> 提供的基础赛程、积分榜单和近期战绩可作为第一层过滤，再结合球队新闻与实时指数，逐步形成自己的赛前笔记。没有一招鲜的方法，但保持信息源清晰、更新及时，能减少盲目感。
+    </div>
+
+    <!-- 额外一段自然内容，增加丰富度（杂志专题式） -->
+    <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; background: #ffffffda; padding: 1.4rem 1.8rem; border-radius: 24px; border:1px solid #e2e9f2; margin: 1.2rem 0 2.5rem;">
+        <div style="flex: 1; min-width: 180px;">
+            <h4 style="font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; color: #4c6280; border-bottom: 1px solid #dae1ec; padding-bottom: 0.3rem;">常见关注点</h4>
+            <ul style="list-style: none; margin-top: 0.5rem;">
+                <li style="padding: 0.2rem 0;">· 近6场得失球与对手强度</li>
+                <li style="padding: 0.2rem 0;">· 主客场表现差异</li>
+                <li style="padding: 0.2rem 0;">· 核心球员状态波动</li>
+                <li style="padding: 0.2rem 0;">· 裁判尺度的潜在影响</li>
+            </ul>
+        </div>
+        <div style="flex: 1; min-width: 180px;">
+            <h4 style="font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; color: #4c6280; border-bottom: 1px solid #dae1ec; padding-bottom: 0.3rem;">可利用的工具</h4>
+            <ul style="list-style: none; margin-top: 0.5rem;">
+                <li style="padding: 0.2rem 0;">· 赛程日历 (周/月视图)</li>
+                <li style="padding: 0.2rem 0;">· 球队对比模块</li>
+                <li style="padding: 0.2rem 0;">· 联赛积分走势图</li>
+                <li style="padding: 0.2rem 0;">· 伤停列表 (持续更新)</li>
+            </ul>
+        </div>
+        <div style="flex: 1; min-width: 140px; display: flex; flex-direction: column; justify-content: center;">
+            <p style="font-size: 0.9rem; color: #2a4059; background: #eef3fa; padding: 0.5rem 1rem; border-radius: 30px; text-align: center;">
+                <a href="https://site-zh-jingcai.com" style="color: #1d3a58; text-decoration: none; font-weight: 500;">竞彩网</a> 
+                <span style="color:#5a708b;"> · 信息聚合</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-prompt">
+        <p>
+            如果想系统浏览当前赛季的赛程、数据及球队档案，可随时查阅 <a href="https://site-zh-jingcai.com">竞彩网</a> 的内容更新。保持对比赛信息的持续关注，是形成个人判断的基础。
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #435b74;">—— 杂志专题 · 信息参考 ——</p>
+    </div>
+
+    <!-- 纯装饰分割（视觉节奏） -->
+    <hr>
+
+    <div style="text-align: center; font-size: 0.78rem; color: #6b829b; padding: 0.5rem 0 1rem;">
+        页面内容仅供信息梳理与参考 · 数据源以官方发布为准
+    </div>
+
+</div>
+</body>
+</html>
